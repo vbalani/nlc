@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <title>Iterating Over Data</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body ng-init="customers=[{joined: '2000-12-02', name:'John', city:'Chandler', 
+orderTotal: 9.9956}, {joined: '1965-01-25',name:'Zed', city:'Las Vegas', orderTotal: 19.99},{joined: '1944-06-15',name:'Tina', 
+city:'New York', orderTotal:44.99}, {joined: '1995-03-28',name:'Dave', city:'Seattle', orderTotal:101.50}]">
+    <h2>Customers</h2>
+    Filter: <input type="text" ng-model="customerFilter.name" />
+    <br /><br />
+    <table>
+        <tr>
+            <th ng-click="sortBy='name';reverse=!reverse">Name</th>
+            <th ng-click="sortBy='city';reverse=!reverse">City</th>
+            <th ng-click="sortBy='orderTotal';reverse=!reverse">Order Total</th>
+            <th ng-click="sortBy='joined';reverse=!reverse">Joined</th>
+        </tr>
+        <tr>
+            <th><input type="text" ng-model="customerFilter.name" /></th>
+        <th><input type="text" ng-model="customerFilter.city" /></th>
+        <th><input type="text" ng-model="customerFilter.orderTotal" /></th>
+        <th><input type="text" ng-model="customerFilter.joined" /></th>
+        </tr>
+        <tr ng-repeat="cust in customers | filter:customerFilter | orderBy:sortBy:reverse">
+            <td>{{ cust.name | uppercase }}</td>
+            <td>{{ cust.city | lowercase }}</td>
+            <td><a ng-href="http://www.gravatar.com/avatar/{{hash}}">{{ cust.orderTotal | currency }}</a></td>
+            <td>{{ cust.joined | date }}</td>
+        </tr>
+    </table>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script><script src="angular.js"></script>
+</body>
+</html>
