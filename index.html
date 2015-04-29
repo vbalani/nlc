@@ -5,31 +5,24 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
       <script src="bower_components/angular-ng-route/angular-route.js"></script>
-      <script src="jquery-1.11.2.js"></script>
-      <script src="bootstrap.js"></script>
+      <script src="bower_components/jquery-1.11.2.js"></script>
+      <script src="bower_components/bootstrap.js"></script>
+      
     <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
     <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
     <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
     <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
-      <script src="appmod1.js"></script>
+      
+      <script src="scripts/appmod1.js"></script>
+      
     <link href="/bower_components/angular-ui-grid/ui-grid.min.css" rel="stylesheet" type="text/css"></link>
-      <link href="bootstrap.css" rel="stylesheet" type="text/css"></link>
-    <style> 
-                    .grid {
-              width: 900px;
-              height: 500px;
-            }
-            .red { color: red;  background-color: yellow !important; }
-            .blue { color: blue;  }
-    </style>
-    
+      <link href="css/bootstrap.css" rel="stylesheet" type="text/css"></link>
+<link href="css/main.css" rel="stylesheet" type="text/css"></link>
     
     <script src="app.js"></script>
   </head>
   <body>
     <div ng-controller="MainCtrl">
- 
-      <button id='toggleFiltering' ng-click="toggleFiltering()" class="btn btn-success">Toggle Filtering</button>
         </br>
       <div ui-grid="gridOptions" class="grid"></div>
     </div>

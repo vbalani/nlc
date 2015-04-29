@@ -2,8 +2,11 @@ var app = angular.module('appmod1', ['ngAnimate', 'ngTouch', 'ui.grid']);
  
 function setOptions($scope,uiGridConstants) {
     
-    function cellTemplate() {
+    function hyperlinkCellTemplate() {
         return '<div class="ui-grid-cell"><a href="/index4-filters1.html"> {{ grid.getCellValue(row,col) }}</a></div>' ;
+    };
+    function contextMenuCellTemplate() {
+        return '<DIV ng-context-menu="menuOptions" class="context">{{ COL_FIELD }}</DIV>' ;
     };
     
   gridOptions = {
@@ -22,7 +25,7 @@ function setOptions($scope,uiGridConstants) {
         }
       },
           {field: 'Department', 
-           cellTemplate: cellTemplate(),
+           cellTemplate: contextMenuCellTemplate(),
            filter: {
            condition: uiGridConstants.filter.CONTAINS
           }
@@ -32,10 +35,9 @@ function setOptions($scope,uiGridConstants) {
           filter: {
            condition: uiGridConstants.filter.CONTAINS
           }} 
-    ]  // emd column defs defn
+    ]  // end column defs defn
       
-     
-      
-  };// end of grid options setup 
+    };// end of grid options setup 
    return gridOptions; 
 };
+
