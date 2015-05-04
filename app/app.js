@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngAnimate', 'ngTouch', 'ui.grid','appmod1','ngRoute']);
+var app = angular.module('app', ['ngAnimate', 'ngTouch', 'ui.grid','appmod1','ngRoute','ui.grid.pagination']);
  
 app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants) {
     
@@ -17,6 +17,7 @@ app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($sco
     $http.get('fedex.json')
         .success(function(data) {
           $scope.gridOptions.data = data;
+            $scope.gridOptions.tName = 'Fedex File';
         });
 
         } // end controller anonymous function arg defn
@@ -47,7 +48,7 @@ app.directive('ngContextMenu', function ($parse) {
             position: 'absolute',
             left: event.pageX + 'px',
             top: event.pageY + 'px'
-        });
+        }); 
         angular.forEach(options, function (item, i) {
             var $li = $('<li>');
             if (item === null) {
@@ -75,6 +76,7 @@ app.directive('ngContextMenu', function ($parse) {
             zIndex: 9999
         });
         $(document).find('body').append($contextMenu);
+        
         $contextMenu.on("click", function (e) {
             $(event.currentTarget).removeClass('context');
             $contextMenu.remove();
@@ -97,11 +99,11 @@ app.directive('ngContextMenu', function ($parse) {
                 // down the road obtain the menu structure (array) from function (service)
                 // call to metalayer object
                 var options = [
-                                ['Filter', function ($itemScope) {
+                                ['Filter on: ' + event.currentTarget.innerText, function ($itemScope) {
 
                                 }],
                                 null,
-                                ['Purchase Orders', function ($itemScope) {
+                                ['Purchase Orrs', function ($itemScope) {
 
                                 }],
                                 null,

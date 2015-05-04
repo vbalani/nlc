@@ -1,4 +1,4 @@
-var app = angular.module('appmod1', ['ngAnimate', 'ngTouch', 'ui.grid']);
+var app = angular.module('appmod1', ['ngAnimate', 'ngTouch', 'ui.grid','ui.grid.pagination']);
  
 function setOptions($scope,uiGridConstants) {
     
@@ -6,12 +6,21 @@ function setOptions($scope,uiGridConstants) {
         return '<div class="ui-grid-cell"><a href="/index4-filters1.html"> {{ grid.getCellValue(row,col) }}</a></div>' ;
     };
     function contextMenuCellTemplate() {
-        return '<DIV ng-context-menu="menuOptions" class="context">{{ COL_FIELD }}</DIV>' ;
+        return '<DIV ng-context-menu="menuOptions" >{{ COL_FIELD }}<span>  =</span></DIV>' ;
     };
+    function dropDownMenuCellTemplate() { 
+        return '<div class = "ddcellmenu"><div class="dropdown"> <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ COL_FIELD }} <span class="caret"></span> </button><ul role="menu" class="dropdown-menu " aria-labelledby="dlabel"> <li role="presentation"><a href="#" role="menuitem">{{ COL_FIELD}}</a></li><li role="presentation"><a href="#" role="menuitem">Cell</a></li><li role="presentation"><a href="#" role="menuitem">Science</a></li></ul></li></div></div>'
+    };
+    
+    
     
   gridOptions = {
       data: [],
     enableFiltering: true,
+    showGridFooter: true,
+      enablePaginationControls: true,
+     paginationPageSizes: [50, 100, 500, 1000],
+   paginationPageSize: 50,
     onRegisterApi: function(gridApi){ 
       $scope.gridApi = gridApi;
     },
@@ -30,7 +39,9 @@ function setOptions($scope,uiGridConstants) {
            condition: uiGridConstants.filter.CONTAINS
           }
     },
-          {field: 'GL Account'},
+          {field: 'GL Account',
+          cellTemplate: dropDownMenuCellTemplate()
+          },
           {field: 'DESCR',
           filter: {
            condition: uiGridConstants.filter.CONTAINS
