@@ -1,71 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html ng-app="app">
+
   <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    
+    <!-- Core Engines -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+    <!-- Packages/Plugins -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
-      <script src="bower_components/angular-ng-route/angular-route.js"></script>
-      <script src="bower_components/jquery-1.11.2.js"></script>
-      <script src="bower_components/bootstrap.min.js"></script>
-      
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ng-route/angular-route.js"></script>
+
+    <!-- ui-grid -->
+    <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
     <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
     <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
     <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-    <script src="/bower_components/angular-ui-grid/ui-grid.js"></script>
-      
-      <script src="app/appmod1.js"></script>
-      
+
+    <!-- Core CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"></link>
     <link href="/bower_components/angular-ui-grid/ui-grid.min.css" rel="stylesheet" type="text/css"></link>
-      <link href="css/bootstrap.css" rel="stylesheet" type="text/css"></link>
-<link href="css/main.css" rel="stylesheet" type="text/css"></link>
-<link href="css/dashboard.css" rel="stylesheet" type="text/css"></link>
-
     
+    <!-- App CSS -->
+    <link href="css/main.css" rel="stylesheet" type="text/css"></link>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/sidebar.css"/>
+
+    <!-- App JS --> 
+    <script src="app/sidebar.js"></script>
+    <script src="app/appmod1.js"></script>
+    
+    <!-- Main App JS -->
     <script src="app/app.js"></script>
-  </head>
-  <body>
-       <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Brand</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Login</a></li>
-          </ul>
-            
-            <form class="navbar-form navbar-right">
-        <div class="form-group" style="display:inline;">
-          <div class="input-group" style="display:table;">
-            <span class="input-group-addon" style="width:10%;"><span class="glyphicon glyphicon-search"></span></span>
-            <input class="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
-          </div>
-        </div>
-      </form>
-            
-            
-        </div>
-      </div>
-    </nav>  
-    
-      <div class="container">
-        <div ng-controller="MainCtrl">
-            <div class="panel" style="margin-top: 5px;">
-  <h3>{{gridOptions.tName}} </h3> 
 
-</div>
-         
-            <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+  </head>
+
+<body>
+    <!-- Fixed navbar -->
+  <div class="navbar navbar-static navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+          <!-- button that toggles the sidebar -->
+        <button type="button" class="navbar-toggle toggle-left" data-toggle="sidebar" data-target=".sidebar-left">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Begin page content -->
+  <div class="container-fluid">
+    <div class="row">
+     
+        <!-- left sidebar --> 
+        <div class="col-xs-7 col-sm-3 col-md-2 sidebar sidebar-left sidebar-animate">
+        <ul class="nav navbar-stacked">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
         
-          </div>
-      </div>  
+        <!-- main content -->
+        <div class="main col-md-9 col-md-offset-3">
+            
+            <div ng-controller="MainCtrl">
+                <div class="panel" >
+                    <h3>{{gridOptions.tName}} </h3> 
+                </div>
+
+                <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
+            </div>
+            
+        </div>
+        
+    </div>
+  </div>
+    <!-- End page content -->
 </body>
+
 </html>
