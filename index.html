@@ -53,18 +53,18 @@
         </button>
            </div>  
        <!-- right side links logout prefs etc. -->
-          <ul class="nav navbar-nav navbar-right">
+          <ul id="navbarrighticons" class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-cog"></a></li>
             <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
           </ul>
             
-           
-       <div class='nav navbar-nav navbar-right nlctopsearch' ng-controller="TypeaheadCtrl">
-    <input type="text" ng-model="asyncSelected" placeholder="Locations loaded via $http" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+        <div >  
+       <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-6" ng-controller="TypeaheadCtrl">
+    <input type="text" ng-model="asyncSelected" placeholder="Global Search (via REST)" typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
     <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 
     </div>
-  
+  </div> 
             
             
      

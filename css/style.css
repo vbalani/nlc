@@ -22,9 +22,13 @@ body {
     
 }
 
-
+#nlcnavsearch {
+  
+  margin-top: 12px;
+    margin-right: 35px;
+}
 .navbar-brand,
-.navbar-nav li a {
+#navbarrighticons {
     line-height: 60px;
     height: 60px;
     padding-top: 0;
@@ -34,7 +38,7 @@ body {
 .nav li,
 .nav li a {
     padding-left: 10px;
-    font-size: 18px;
+    
     color: #cccccc;
     
 }
