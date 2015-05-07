@@ -22,11 +22,10 @@ body {
     
 }
 
-#nlcnavsearch {
-  
-  margin-top: 12px;
-    margin-right: 35px;
+#nlcnavsearch,#nlcsearchdropdown {
+  margin-top: 12px;    
 }
+
 .navbar-brand,
 #navbarrighticons {
     line-height: 60px;
