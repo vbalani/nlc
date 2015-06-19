@@ -133,12 +133,7 @@ app.controller('TypeaheadCtrl',['$scope','$http',  function($scope, $http) {
   
   // Any function returning a promise object can be used to load values asynchronously
   $scope.getLocation = function(val) {
-    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
-      params: {
-        address: val,
-        sensor: false
-      }
-    }).then(function(response){
+    return $http.get('http://localhost:1337/esauto/VBALAni/nldev/vendorsa/' + val).then(function(response){
       return response.data.results.map(function(item){
         return item.formatted_address;
       });
