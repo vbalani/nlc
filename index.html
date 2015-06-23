@@ -59,10 +59,10 @@
           </ul>
             
         <div >  
-                   <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-4" ng-controller="TypeaheadCtrl">
-    <input type="text" ng-model="asyncSelected" placeholder="Global Search (via REST)" typeahead="VENDORNAME for VENDORNAME in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
+                   <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-6" ng-controller="TypeaheadCtrl">
+    <input type="text" ng-model="asyncSelected" placeholder="Search" typeahead="vendor.VENDORID + '  ' + vendor.VENDORNAME for vendor in getLocation($viewValue)" typeahead-loading="loadingLocations" class="form-control">
     <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-
+                                                       <!-- typeahead syntax stuff as stuff.name for stuff in stuffs -->
     </div>
             
           <div ng-controller="DropdownCtrl" class="nav navbar-nav navbar-right">  
@@ -95,7 +95,7 @@
      
         <!-- left sidebar --> 
         <div class="col-xs-7 col-sm-3 col-md-2 sidebar sidebar-left sidebar-animate">
-        <ul class="nav navbar-stacked">
+        <ul id="leftsidebarmenu" class="nav navbar-stacked">
           <li> Refine By </li>
           <li><a href="#">....... (100)</a></li>
           <li><a href="#">######### (53)</a></li>

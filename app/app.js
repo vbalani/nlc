@@ -134,9 +134,10 @@ app.controller('TypeaheadCtrl',['$scope','$http',  function($scope, $http) {
   // Any function returning a promise object can be used to load values asynchronously
   $scope.getLocation = function(val) {
     return $http.get('http://localhost:1337/esauto/VBALAni/nldev/vendorsa/' + val).then(function(response){
-      return response.data.results.map(function(item){
-        return item.formatted_address;
-      });
+return response.data;     
+// return response.data.map(function(item){
+      //  return item.VENDORNAME ;
+     // });
     });
   };
 
