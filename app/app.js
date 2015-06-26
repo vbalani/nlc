@@ -130,6 +130,14 @@ app.directive('ngContextMenu', function ($parse) {
 app.controller('TypeaheadCtrl',['$scope','$http',  function($scope, $http) {
 
   $scope.selected = undefined;
+    
+    $scope.onSelect = function ($item, $model, $label) {
+   $scope.$item = $item;
+   $scope.$model = $model;
+    $scope.$label = $label;
+         // Implement other logics
+        console.log("onselect  - " + $scope.$item);
+};
   
   // Any function returning a promise object can be used to load values asynchronously
   $scope.getLocation = function(val) {
@@ -138,6 +146,7 @@ return response.data;
 // return response.data.map(function(item){
       //  return item.VENDORNAME ;
      // });
+        
     });
   };
 
