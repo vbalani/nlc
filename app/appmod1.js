@@ -26,23 +26,16 @@ function setOptions($scope,uiGridConstants) {
     },
      
       columnDefs: [   // columndefs have the field names hardcoded if i have to play with setting etc. have to find a agnostic way
-      { field: 'VENDOR',
-        cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex) {
-       /*   if (grid.getCellValue(row,col) === 'FEDEX') {
-            return 'blue';
-          } */
-        }
-      },
-          {field: 'Department', 
+        {field: 'dept_name', 
            cellTemplate: contextMenuCellTemplate(),
            filter: {
            condition: uiGridConstants.filter.CONTAINS
           }
     },
-          {field: 'GL Account',
+          {field: 'vendor_id',
            cellTemplate: contextMenuCellTemplate()
           },
-          {field: 'DESCR',
+          {field: 'account_name',
           filter: {
            condition: uiGridConstants.filter.CONTAINS
           }} 

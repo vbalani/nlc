@@ -14,10 +14,10 @@ app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($sco
 
     $scope.gridOptions = setOptions($scope, uiGridConstants); 
     
-    $http.get('fedex.json')
+    $http.get('http://52.1.144.162:1337/vbalani/nl_deptxwalk/%7B%22vendor_name%22%20:%20%22SIGHTLIFE%22%7D')
         .success(function(data) {
           $scope.gridOptions.data = data;
-            $scope.gridOptions.tName = 'Fedex File';
+            $scope.gridOptions.tName = 'Vendor File';
         });
 
         } // end controller anonymous function arg defn
@@ -131,17 +131,23 @@ app.controller('TypeaheadCtrl',['$scope','$http',  function($scope, $http) {
 
   $scope.selected = undefined;
     
-    $scope.onSelect = function ($item, $model, $label) {
-   $scope.$item = $item;
-   $scope.$model = $model;
-    $scope.$label = $label;
-         // Implement other logics
-        console.log("onselect  - " + $scope.$item);
-};
+    $scope.submitSearch = function() {
+        if (typeof $scope.searchPhrase === 'object') {
+            alert('Typeahead selected: '+ JSON.stringify($scope.searchPhrase));
+        } else {
+            alert("search phrase:  " + $scope.searchPhrase);
+        }
+    };
   
+    $scope.onSelect = function() {
+        $scope.target = $scope.searchPhrase.target;
+        $scope.keyvalue = $scope.searchPhrase.keyvalue;
+        $scope.searchPhrase = $scope.searchPhrase.keydescr + " in " + $scope.searchPhrase.target;
+        
+    }
   // Any function returning a promise object can be used to load values asynchronously
-  $scope.getLocation = function(val) {
-    return $http.get('http://localhost:1337/esauto/VBALAni/nldev/vendorsa/' + val).then(function(response){
+  $scope.getTypeAheads = function(val) {
+    return $http.get('http://52.1.144.162:1337/esauto/VBALAni/nldev/nl_autocomplete/' + val).then(function(response){
 return response.data;     
 // return response.data.map(function(item){
       //  return item.VENDORNAME ;
