@@ -1,38 +1,5 @@
 var app = angular.module('app', ['ngAnimate', 'ngTouch', 'ui.grid','appmod1','ngRoute','ui.grid.pagination','ui.bootstrap']);
- 
-app.controller('MainCtrl', ['$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants) {
-    
-    $scope.highlightFilteredHeader = 
-      function( row, rowRenderIndex, col, colRenderIndex ) {
-    if( col.filters[0].term ){
-      return 'header-filtered';
-    } else {
-      return '';
-    }
-  };
 
-
-    $scope.gridOptions = setOptions($scope, uiGridConstants); 
-    
-    $http.get('http://52.1.144.162:1337/vbalani/nl_deptxwalk/%7B%22vendor_name%22%20:%20%22SIGHTLIFE%22%7D')
-        .success(function(data) {
-          $scope.gridOptions.data = data;
-            $scope.gridOptions.tName = 'Vendor File';
-        });
-
-        } // end controller anonymous function arg defn
-    ] // end controllers second argument (array)
-); //end controller definition
-
-app.config(function ($routeProvider) {
- 
-        // routes in the main app.js
-    	$routeProvider
-    		.when('/VENDOR',
-    			{ redirectTo: '/' }
-    		)
-    		.otherwise({ redirectTo: '/' });
-});       
 
 app.directive('ngContextMenu', function ($parse) {
     var renderContextMenu = function ($scope, event, options) {
@@ -126,29 +93,3 @@ app.directive('ngContextMenu', function ($parse) {
         });
     };
 });
-
-
-app.controller('DropdownCtrl', ['$scope','$log',function ($scope, $log) {
-  $scope.items = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!',
-      '4th',
-      'fifth',
-      'of course it\'s sixth'
-  ];
-
-  $scope.status = {
-    isopen: false
-  };
-
-  $scope.toggled = function(open) {
-    $log.log('Dropdown is now: ', open);
-  };
-
-  $scope.toggleDropdown = function($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    $scope.status.isopen = !$scope.status.isopen;
-  };
-}]);

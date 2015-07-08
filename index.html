@@ -36,6 +36,7 @@
     
     <!-- Main App JS -->
     <script src="app/app.js"></script>
+    <script src="app/controllers/typeAheadController.js"></script>
 
   </head>
 
@@ -61,7 +62,7 @@
                <!-- Search Bar -->    
             <div >
                    <!-- ng typeahead control -->
-                <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-3" ng-controller="TypeaheadCtrl">
+                <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-3" ng-controller="typeAheadController">
                     <form ng-submit="submitSearch()">
                         <input type="text" ng-model="searchPhrase" placeholder="Search" typeahead-editable="true" typeahead-focus-first="false" typeahead="autoc as autoc.keyvalue + '  ' + autoc.keydescr + ' -- ' + autoc.target for autoc in getTypeAheads($viewValue)" typeahead-loading="loadingLocations" typeahead-wait-ms="100" typeahead-min-length="3" typeahead-on-select="onSelect()" class="form-control">
                         <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
