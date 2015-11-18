@@ -24,6 +24,9 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"></link>
     <link href="/bower_components/angular-ui-grid/ui-grid.min.css" rel="stylesheet" type="text/css"></link>
     
+    <!-- Google Vis API -->
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules': [{'name':'visualization','version':'1.1','packages':['treemap']}]}"></script>
+
     <!-- App CSS -->
     <link href="css/main.css" rel="stylesheet" type="text/css"></link>
     <link rel="stylesheet" href="css/sidebar.css"/>
@@ -37,6 +40,8 @@
     <!-- Main App JS -->
     <script src="app/app.js"></script>
     <script src="app/controllers/typeAheadController.js"></script>
+    <script src="app/controllers/heatmapCollapseController.js"></script>
+    <script src="app/controllers/heatmapController.js"></script>
 
   </head>
 
@@ -62,7 +67,7 @@
                <!-- Search Bar -->    
             <div >
                    <!-- ng typeahead control -->
-                <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-xs-3" ng-controller="typeAheadController">
+                <div id="nlcnavsearch" class="nav navbar-nav navbar-right col-md-5" ng-controller="typeAheadController">
                     <form ng-submit="submitSearch()">
                         <input type="text" ng-model="searchPhrase" placeholder="Search" typeahead-editable="true" typeahead-focus-first="false" typeahead="autoc as autoc.keyvalue + '  ' + autoc.keydescr + ' -- ' + autoc.target for autoc in getTypeAheads($viewValue)" typeahead-loading="loadingLocations" typeahead-wait-ms="100" typeahead-min-length="3" typeahead-on-select="onSelect()" class="form-control">
                         <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
@@ -104,9 +109,21 @@
             <!-- main content -->
             <div class="main col-md-9 col-md-offset-2">
 
+                <!-- Heatmap Controller -->
+                <div ng-controller="heatmapCollapseController">
+                    <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+                    <hr>
+                    <div collapse="isCollapsed">
+                        <!-- ng Treemap controller -->
+                        <div ng-controller="heatmapController" id="heatmapdiv" style="height: 250px;">
+
+                        </div>
+                    </div>
+                </div>
+      
                 <!-- ng Grid -->
                 <div ng-controller="MainCtrl">
-                    <div>  <h3>{{gridOptions.tName}} </h3> <span><input class="form-control" name="search" placeholder="Search within results TBD" autocomplete="off" type="text"></span>
+                    <div>  <h3>{{gridOptions.tName}} </h3>
                     </div>
 
                     <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
